@@ -6,6 +6,7 @@ class Node:
     def __init__(self, word, val):
         self.word = word
         self.value = val
+        self.next = None
         self.left_child = None
         self.right_child = None
 
@@ -93,12 +94,12 @@ if __name__ == '__main__':
         root_node = construct_tree(the_list)
         print("Hey now.. " + str(root_node.get_value()))
         print(random_word(root_node))
-        a_dictionary = dict()
-        for i in range(1000000):
-            rando_word = random_word(root_node)
-            if rando_word in a_dictionary:
-                a_dictionary[rando_word] += 1
-            else:
-                a_dictionary[rando_word] = 1
-        print(a_dictionary)
+        # a_dictionary = dict()
+        # for i in range(1000000):
+        #     rando_word = random_word(root_node)
+        #     if rando_word in a_dictionary:
+        #         a_dictionary[rando_word] += 1
+        #     else:
+        #         a_dictionary[rando_word] = 1
+        # print(a_dictionary)
     print("hello world")
