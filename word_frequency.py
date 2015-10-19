@@ -1,3 +1,4 @@
+from collections import defaultdict # [brian] explained below
 import re
 import time
 
@@ -8,6 +9,10 @@ def histogram(source_text):
     a_dictionary = dict()
     for line in content:
         a_list += line.split()
+
+    # [brian] You could write the above as:
+    a_list = [word for word in line.split() for line in content]
+
     while a_list:
         word = a_list.pop()
         word = word.lower()
@@ -16,6 +21,24 @@ def histogram(source_text):
             a_dictionary[word] += 1
         else:
             a_dictionary[word] = 1
+
+    return a_dictionary
+
+    # [brian] You could write the above as:
+
+    a_dictionary = defaultdict(int)
+    for word in a_list:
+        word = re.sub('[^0-9a-z]+', '', word.lower())
+        a_dictionary[word] += 1
+
+    # [brian] Checking whether a key exists in a dictionary and using a default value
+    # is super common in python, so `defaultdict` was added to make it easier.
+
+    # defaultdict takes a constructor, and when the key isn't found calls that
+    # constructor instead of throwing an Exception. Here, `int` is a function
+    # which returns 0, the default value.
+    # https://docs.python.org/2/library/collections.html#collections.defaultdict
+
     return a_dictionary
 
 
